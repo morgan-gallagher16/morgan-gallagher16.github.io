@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Website about food</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="homestyle.css" type="text/css">
+
+</head>
+
+<body>
+  <header> Some of my <b>favorite</b> foods. </header>
+  <header id="maker"> Made by Morgan </header>
+  <div id="container" role="article">
+    <nav>
+      <h3 class="headings"><b>More recipes</b><br><br></h3>
+      <a href="resume.html"> <b>Home</b> </a><br>
+      <a href='shrimpgrits.html'> Shrimp and Grits </a> <br>
+      <a href='picadillo.html'> Picadillo </a> <br><br>
+      <svg width="200" height="200" style="display: block; margin: 10px auto;">
+        <circle cx="100" cy="100" r="80" fill="blue" />
+        <text x="100" y="110" font-size="20" text-anchor="middle" fill="white" font-family="Arial">
+          Click for fun
+        </text>
+      </svg>
+    </nav>
+    <main>
+      <h3 class="headings"><b>About this page:</b> <br></h3>
+      <p> This website is going to contain some recipes for foods that I like. There are links to recipes that I found online for shrimp and grits as well as picadillo. Each page includes an external link to the recipe and a description of what the dish is. </p>
+      <figure>
+      <a data-flickr-embed="true" href="https://www.flickr.com/photos/daztall/12903533563" title="Student Food"><img src="https://live.staticflickr.com/2867/12903533563_f95047d30d_w.jpg" alt="Student Food"></a>
+      <figcaption class="caption"> This photo was taken from flickr, author Darragh O Connor </figcaption>
+      </figure>
+    </main>
+  </div>
+  <footer> That's all folks! </footer>
+  
+  <script>
+    // Function to generate a random color
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  
+    // Add event listener to the SVG text
+    document.querySelector('svg text').addEventListener('click', function() {
+      const randomColor = getRandomColor();
+      document.querySelector('main').style.backgroundColor = randomColor;
+    });
+  </script>
+
+</body>
+
+</html>

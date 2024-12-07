@@ -3,9 +3,10 @@
 
 <head>
   <title>Website about food</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="homestyle.css" type="text/css">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -17,13 +18,26 @@
       <a href="resume.html"> <b>Home</b> </a><br>
       <a href='shrimpgrits.html'> Shrimp and Grits </a> <br>
       <a href='picadillo.html'> Picadillo </a> <br><br>
-      <svg width="200" height="200" style="display: block; margin: 10px auto;">
-        <circle cx="100" cy="100" r="80" fill="blue" />
-        <text x="100" y="110" font-size="20" text-anchor="middle" fill="white" font-family="Arial">
-          Click for fun
+      <p> Can't decide which recipe? Let the visual or audio spinner decide for you.</p>
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" height="200">
+        <circle cx="50" cy="50" r="50" fill="yellow"> </circle>
+        <line x1="50" y1="100" x2="50" y2="0" stroke="red" stroke-width="2" />
+        <line id="spinner" x1="50" y1="50" x2="100" y2="50" stroke="black" stroke-width="2" />
+        <text x="25" y="55" text-anchor="middle" font-size="7" fill="black" font-family="Arial">
+          Shrimp & grits
         </text>
-      </svg>
-    </nav>
+        <text x="75" y="55" text-anchor="middle" font-size="7" fill="black" font-family="Arial">
+          Picadillo
+        </text>
+      </svg> 
+      <br>
+      <button class="btn btn-primary btn-sm" onclick="stopSpinner()">Stop Spinner</button>
+      <button class="btn btn-primary btn-sm" onclick="resetSpinner()">Start Spinner</button>
+      <br>
+        <audio id="picadillo-audio" src="picadillo.mp3"></audio>
+        <audio id="shrimp-and-grits-audio" src="shrimpgrits.mp3"></audio>
+        <button id = "audio-selector-button" class="btn btn-primary btn-sm" onclick="selectorAudio()">Audio Spinner</button>
+    </nav>    
     <main>
       <h3 class="headings"><b>About this page:</b> <br></h3>
       <p> This website is going to contain some recipes for foods that I like. There are links to recipes that I found online for shrimp and grits as well as picadillo. Each page includes an external link to the recipe and a description of what the dish is. </p>
@@ -31,14 +45,23 @@
       <a data-flickr-embed="true" href="https://www.flickr.com/photos/daztall/12903533563" title="Student Food"><img src="https://live.staticflickr.com/2867/12903533563_f95047d30d_w.jpg" alt="Student Food"></a>
       <figcaption class="caption"> This photo was taken from flickr, author Darragh O Connor </figcaption>
       </figure>
+      <br>
+      <h3><b>Some buttons for pressing</b></h3>
+      <button type="button" class="btn btn-primary" onclick="changeMainBackgroundColor()">Click for Fun</button>
+      <button type="button" class="btn btn-primary">Click for No Fun</button>
+      <a class="btn btn-primary" href="funpage.html" role="button">Click for Extra Fun</a>
+
+
     </main>
   </div>
   <footer> That's all folks! </footer>
   
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
   <script>
-    // Function to generate a random color
+    // Generate random color
     function getRandomColor() {
-      const letters = '0123456789ABCDEF';
+      var letters = '0123456789ABCDEF';
       let color = '#';
       for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
@@ -46,11 +69,43 @@
       return color;
     }
   
-    // Add event listener to the SVG text
-    document.querySelector('svg text').addEventListener('click', function() {
-      const randomColor = getRandomColor();
+    // Change main to random color
+    function changeMainBackgroundColor() {
+      var randomColor = getRandomColor();
       document.querySelector('main').style.backgroundColor = randomColor;
-    });
+    }
+
+    // Stop spinner
+    function stopSpinner() {
+            var spinner = document.getElementById('spinner');
+            var randomTimeout = Math.random() * 3000; 
+            setTimeout(() => {
+                spinner.style.animationPlayState = 'paused';
+            }, randomTimeout);
+        }
+    
+    // Reset spinner after stopping
+    function resetSpinner(){
+            var spinner = document.getElementById('spinner');
+            spinner.style.animationPlayState = 'running';
+    }
+
+    // Audio Spinner
+    function selectorAudio() {
+        var randNum = Math.round(Math.random())
+        if (randNum === 0) {
+                document.getElementById('picadillo-audio').play();
+            } else {
+                document.getElementById('shrimp-and-grits-audio').play();
+            }
+        }
+    
+    // Adjust audio volume 
+    var picadilloAudio = document.getElementById('picadillo-audio');
+    var shrimpgritsAudio = document.getElementById('shrimp-and-grits-audio');
+    picadilloAudio.volume = 0.45;
+    shrimpgritsAudio.volume = 0.45;
+
   </script>
 
 </body>
